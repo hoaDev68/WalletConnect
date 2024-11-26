@@ -31,30 +31,19 @@
                 <button id="connect-button">WalletConnect</button>
             </div>
             <h3 id="kq">Disconnect</h3>
+            <a href="./addUser.html"><button>Thêm người dùng</button></a>
+            <a href="./listUser.html"><button>Danh sách người dùng</button> </a>
         </div>
-        <a href="./addUser.html"> <button> Thêm người dùng </button> </a>
-        <a href="./listUser.html"> <button> Danh sách người dùng </button> </a>
-    </body>
     </body>
     <script>
         let kq = document.getElementById('kq');
-        if (typeof window.ethereum !== 'undefined') {
-            document.getElementById('connect-button').addEventListener('click', event => {
-                let account;
-
-                // Yêu cầu kết nối tài khoản MetaMask
-                ethereum.request({ method: 'eth_requestAccounts' }).then(accounts => {
-                    account = accounts[0]; // Lấy tài khoản đầu tiên
-                    console.log(account);
-                    kq.innerHTML = "Connected: " + account; // Hiển thị tài khoản đã kết nối
-                }).catch((err) => {
-                    console.error("Error:", err);
-                    kq.innerHTML = "Failed to connect.";
-                });
-            });
-        } else {
-            kq.innerHTML = "MetaMask is not installed!";
-        }
-
+        document.getElementById('connect-button').addEventListener('click', event => {
+        let account;
+        ethereum.request({method: 'eth_requestAccounts'}).then(accounts => {
+            account = accounts[0];
+            console.log(account);
+            kq.innerHTML = "Connected : "+account;
+        }); 
+        });
     </script>
 </html>
